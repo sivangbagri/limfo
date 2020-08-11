@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo QR Generator {% endblock %}
+{% block body %}
+{% load static %}
+<div class="container my-5">
+    <form method="get">
+
+        <!--        {% csrf_token %}-->
+        <div class="form-group">
+            <label for="data"><strong>Enter Data</strong></label>
+            <textarea class="form-control" id="data" name="data" rows="3"></textarea>
+            <small id="emailHelp" class="form-text text-muted">Don't worry we have no facility of storing anyone's data
+                :)</small></div>
+        <div class="form-group">
+            <label for="color"><strong>Select Colour</strong></label>
+            <select class="form-control" id="color" name="color">
+                <option>Black</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Orange</option>
+                <option>Green</option>
+                <option>Violet</option>
+                <option>Yellow</option>
+                <option>Indigo</option>
+            </select>
+        </div>
+
+
+        <button class="btn btn-dark" type="submit">Generate</button>
+    </form>
+    <br>
+    <p>Your QR Code will be served below:</p>
+    <img src="/media/limfo{{n}}.png" style="border:5px solid Black;">
+    <div class="text-center my-2">
+
+        <a role="button" class="btn btn-outline-dark mx-3" href="/media/limfo{{n}}.png" download="limfoQR">Download</a>
+    </div>
+</div>
+<center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
+
+{% endblock %}
+

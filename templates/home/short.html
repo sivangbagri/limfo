@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo Shortner {% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center" style="height:109px;">
+            <strong>Entered Link</strong>
+            <span class="badge badge-dark badge-pill">{{old}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center" style="height:109px;">
+            <strong>Shorted Link</strong>
+            <ul class="list-group">
+                <li><span class="badge badge-dark badge-pill">{{new}}</span></li>
+                <li><span class="badge badge-dark badge-pill">{{new2}}</span></li>
+
+
+            </ul>
+
+    </ul>
+    <small id="emailHelp" class="form-text text-muted">You can use any of these shorted url without any
+        problem.</small>
+    <center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
+
+</div>
+
+{% endblock %}
+

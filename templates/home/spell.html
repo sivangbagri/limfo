@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo Spelling Mistake Remover {% endblock %}
+{% block body %}
+
+<div class="container my-5">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="incorrect"><strong>Enter Incorrect Text Here:</strong></label>
+            <textarea class="form-control" id="incorrect" name="incorrect" rows="6"></textarea>
+        </div>
+        <button class="btn btn-dark" type="submit">Submit</button>
+    </form>
+    <br>
+    <ul class="list-group">
+
+
+        <li class="list-group-item list-group-item-dark">{{new}}</li>
+    </ul>
+</div>
+<center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
+
+{% endblock %}

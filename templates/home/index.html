@@ -21,7 +21,6 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/landing-page.css' %}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -42,10 +41,10 @@
             </li>
         </ul>
         {% else %}
-        <span><button type="button" class="btn btn-outline-warning mx-2" data-toggle="modal" data-target="#signupmodal">
+        <span><button type="button" class="btn btn-outline-danger mx-2" data-toggle="modal" data-target="#signupmodal">
                 Sign Up
             </button>
-            <a class="btn btn-outline-warning" href="#sign">Login</a></span>
+            <a class="btn btn-outline-danger" href="#sign">Login</a></span>
         {% endif %}
     </div>
 </nav>
@@ -199,6 +198,8 @@
                     <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right"
                             title="Login to access this feature">Spelling Mistake Remover
                     </button>
+                    <span class="badge badge-danger">Requires Login</span>
+
                 </li>
                 <br>
                 {% endif %}
@@ -216,6 +217,8 @@
                             title="Login to access this feature">
                         Profanity Filter
                     </button>
+                    <span class="badge badge-danger">Requires Login</span>
+
                 </li>
 
 
@@ -289,7 +292,7 @@
                 <h2>You can be the next contributor!</h2>
                 <p class="lead mb-0">Yes! You can be the next contributor of limfo. This site is open-source and anyone
                     can contribute for its betterment.</p><br>
-                <a href="">Contribute Now!</a>
+                <a href="disabled">Contribute Now!</a>
             </div>
         </div>
     </div>
@@ -357,11 +360,11 @@
             <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                 <ul class="list-inline mb-2">
                     <li class="list-inline-item">
-                        <a href="/about">About</a>
+                        <a href="/about" style="text-decoration:none;">About </a>
                     </li>
                     <li class="list-inline-item">&sdot;</li>
                     <li class="list-inline-item">
-                        <a href="/feedback">Feedback</a>
+                        <a href="/feedback" style="text-decoration:none;">Feedback</a>
                     </li>
 
                 </ul>

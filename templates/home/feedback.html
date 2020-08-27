@@ -3,18 +3,16 @@
 {% block body %}
 
 <div class="container my-5">
-    <form method="post" action="/feedback/">
+    <form id="feed">
         {% csrf_token %}
         <div class="form-group">
             <label for="name"><strong>Your Name</strong></label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Shivang Bagri">
+            <input type="text" class="form-control" id="name" name="name" placeholder="">
         </div>
         <div class="form-group">
             <label for="email"><strong>Email address</strong></label>
             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
         </div>
-
-
         <div class="form-group">
             <label for="text"><strong>Feedback</strong></label>
             <textarea class="form-control" id="text" name="text" rows="4"></textarea>
@@ -23,3 +21,39 @@
     </form>
 </div>
 {% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    
+    $(document).on('submit','#feed',function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/feedback/',
+            type: 'POST',
+            data: {
+                name:  $('#name').val(),
+                email: $('#email').val(),
+                text:  $('#text').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+
+
+        },
+        
+    
+        success:function() {
+
+            alert("Feedback Submitted Successfully");
+
+        }
+
+    });
+
+    });
+
+</script>
+
+
+{% endblock %}
+
+    <!-- color: #ff1e64; -->

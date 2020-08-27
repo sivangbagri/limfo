@@ -16,7 +16,8 @@ def short(request):
         url = request.POST.get('link')
         shorted = pyshorteners.Shortener()
         # new3 = shorted.chilpit.short(url)
-        new2 = shorted.osdb.short(url)
+        # new2 = shorted.osdb.short(url)
+        new2 = shorted.isgd.short(url)
         # new3 = shorted.post.short(url)
         new = shorted.tinyurl.short(url)
     else:
@@ -212,11 +213,15 @@ def handleSignup(request):
             return redirect('home')
 
         # create user
-        myuser = User.objects.create_user(username, email, pass1)
-        myuser_first_name = fname
-        mysuer_last_name = lname
-        myuser.save()
-        messages.success(request, "limfo Account created successfully.")
+        try:
+            myuser = User.objects.create_user(username, email, pass1)
+            myuser_first_name = fname
+            mysuer_last_name = lname
+            myuser.save()
+            messages.success(request, "limfo Account created successfully.")
+        except Exception as e:
+            messages.error(request, "Username already exist. Try again with a unique one.")
+
         return redirect('home')
     else:
         return HttpResponse('404 Not Found')

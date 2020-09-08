@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo Jokes{% endblock %}
+{% block body %}
+<div class="container my-4">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="pdf_file" name="pdf_file" accept="application/pdf"
+                   required>
+            <label class="custom-file-label" for="pdf_file">Choose a PDF...</label>
+            <div class="invalid-feedback">Upload file to Scan.</div>
+        </div>
+        <p><b>Choose one of the following:</b></p>
+
+        <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="Radios" id="choice1" value="merge">
+            <label class="form-check-label" for="choice1">
+                <b>Merge PDFs</b> </label>
+            <div class="custom-file mb-3 my-1">
+
+                <input type="file" class="custom-file-input" id="pdf2" name="pdf2" accept="application/pdf">
+
+                <label class="custom-file-label" for="pdf2">Choose second PDF...</label>
+            </div>
+        </div>
+        <div class="form-check my-2">
+            <input class="form-check-input" type="radio" name="Radios" id="choice2" value="protect">
+            <label class="form-check-label" for="choice2">
+                <b> Password Protect PDF</b> </label>
+
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" aria-describedby="emailHelp"
+                       placeholder="Enter password...">
+
+
+                <small id="emailHelp" class="form-text text-muted">Default: limfo</small>
+            </div>
+        </div>
+
+
+        <div class="form-check my-2">
+            <input class="form-check-input" type="radio" name="Radios" id="choice3" value="convert">
+            <label class="form-check-label" for="choice3">
+                <b>Convert to text</b> </label>
+        </div>
+        <button class='btn btn-dark my-2' type="submit">Submit</button>
+    </form>
+    {% if merge %}
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/merge{{m}}.pdf" download="limfoPDF2">Download
+        Merged PDF</a>
+    {% elif text %}
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/convertPDF{{c}}.txt" download="limfoTEXT">Download
+        Text file</a>
+    {% elif protect %}
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/new{{f}}.pdf" download="limfoPWD">Download
+        Protected file</a>
+    {% endif %}
+    <center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
+</div>
+<script>
+            $('#pdf_file').on('change',function(){
+            var filename= $(this).val();
+            $(this).next('.custom-file-label').html(filename);
+            });
+
+            $('#pdf2').on('change',function(){
+            var filename= $(this).val();
+            $(this).next('.custom-file-label').html(filename);
+            });
+</script>
+{% endblock %}

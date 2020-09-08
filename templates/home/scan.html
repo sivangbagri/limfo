@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo QR Scanner {% endblock %}
+{% block body %}
+
+<div class="container my-4">
+    <form class="was-validated" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="qrfile" name="qrfile" accept="image/*" required>
+            <label class="custom-file-label" for="qrfile">Choose file...</label>
+            <div class="invalid-feedback">Upload file to Scan.</div>
+        </div>
+        <script>
+            $('#qrfile').on('change',function(){
+            var filename= $(this).val();
+            $(this).next('.custom-file-label').html(filename);
+            });
+        </script>
+
+
+        <button class='btn btn-dark my-2' type="submit">Submit</button>
+    </form>
+
+    <br>
+    <strong>Your QR Code contains:</strong>
+    <ul class="list-group my-3">
+
+        {% if exception %}
+        <li class="list-group-item list-group-item-danger">{{data}}</li>
+        {% else %}
+        <li class="list-group-item list-group-item-dark">{{data}}</li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

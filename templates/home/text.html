@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block  title %} Limfo Text Transformation {% endblock %}
+{% block body %}
+
+<div class="container my-4">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="text"><strong>Enter Text Here:</strong></label>
+            <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+        </div>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice1" value="translate"
+                   checked>
+            <label class="form-check-label" for="choice1">
+                <b>Translate</b> </label>
+            <div class="form-group">
+                <label for="lang">Select Language</label>
+                <select class="form-control" id="lang" name="lang">
+                    <option>Hindi</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Arabic</option>
+                    <option>Urdu</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice2" value="profanity">
+            <label class="form-check-label" for="choice2">
+                <b>Profanity Filter</b> </label>
+        </div>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice3" value="mistake">
+            <label class="form-check-label" for="choice3">
+                <b>Remove Spelling Mistakes</b> </label>
+        </div>
+
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice5" value="audio">
+            <label class="form-check-label" for="choice5"><b>Generate Audio Book</b> </label>
+        </div>
+
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice4" value="pdf">
+            <label class="form-check-label" for="choice4">
+                <b>Convert To PDF</b> </label>
+            <small id="emailHelp" class="form-text text-muted">(Limit 640 words)</small>
+        </div>
+        <div class="form-check my-3">
+            <input class="form-check-input" type="radio" name="Radios" id="choice6" value="mistake" disabled>
+            <label class="form-check-label" for="choice6">
+                <p class="text-muted">Word Cloud</p>
+            </label></div>
+
+        <button class="btn btn-dark" type="submit">Submit</button>
+
+    </form>
+    {% if thank %}
+    <br>
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/limfoPDF{{p}}.pdf" download="limfoPDF">Download
+        PDF</a>
+    <br>
+    {% endif %}
+    {% if audio %}
+    <br>
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/audio_b{{a}}.wav" download="limfoAudio">Download
+        Audio</a>
+    <br>
+    {% endif %}
+
+    <br>
+    <strong> Results:</strong>
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark">{{output}}</li>
+    </ul>
+
+</div>
+<center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
+
+{% endblock %}

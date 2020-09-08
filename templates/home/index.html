@@ -125,7 +125,7 @@
                     <div class="form-row">
                         <div class="col-12 col-md-9 mb-2 mb-md-0">
                             <input type="url" class="form-control form-control-lg" name="link" id="link"
-                                   placeholder="Enter your link ...">
+                                   placeholder="Enter your url...">
                         </div>
                         <div class="col-12 col-md-3">
                             <button type="submit" class="btn btn-block btn-lg btn-dark"><strong>Short!</strong>
@@ -137,95 +137,43 @@
         </div>
     </div>
 </header>
-
 <!--Features-->
+
 <div class="container my-5">
-    <p>
-        <button class="btn btn-dark btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample"
-                aria-expanded="false" aria-controls="collapseExample">
-            <strong>More Features</strong>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/text">
+        <strong>Text Transformation</strong>
 
-        </button>
-        <span class="badge badge-warning">New!</span>
-    </p>
+    </a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/image">
+        <strong>Image Transformation</strong>
 
+    </a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/captcha">
+        <strong>Captchas</strong>
 
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-            <ul>
-                <li>
-                    <a href="/qrCode" role="button" class="btn btn-dark">Generate QR code</a>
-                </li>
-                <br>
+    </a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/info">
+        <strong>Phone Number Info</strong>
 
-                <li>
-                    <a role="button" class="btn btn-dark" href="/info">Find Phone Number Info</a>
-                </li>
-                <br>
-                <li>
-                    <a role="button" class="btn btn-dark" href="/covid">Covid 19 Data</a> <span
-                        class="badge badge-danger">Hot!</span>
+    </a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/generate">
+        <strong>Generator</strong>
 
-                </li>
-                <br>
-                <li>
-                    <a role="button" class="btn btn-dark" href="/captcha">Generate Captcha</a>
-                </li>
-                <br>
-                <li>
-                    <a href="/translate" class="btn btn-dark">Translate</a>
-                </li>
-                <br>
-                <li>
-                    <a href="/bar_code" class="btn btn-dark">Generate Bar Code</a>
-                </li>
-                <br>
-                <li>
-                    <a href="/joke" class="btn btn-dark">I want to laugh </a>
-                </li>
-                <br>
-                {% if user.is_authenticated %}
+    </a>
+    <br>
+    <br>
+    <a role="button" class="btn btn-dark btn-lg text-light" type="button" href="/pdfs">
+        <strong>PDF Manipulator</strong>
 
-                <li>
-                    <a href="/spell" class="btn btn-dark">Spelling Mistake Remover</a>
-                </li>
-
-                <br>
-                {% else %}
-                <li>
-
-
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right"
-                            title="Login to access this feature">Spelling Mistake Remover
-                    </button>
-                    <span class="badge badge-danger">Requires Login</span>
-
-                </li>
-                <br>
-                {% endif %}
-
-                {% if user.is_authenticated %}
-
-                <li>
-                    <a role="button" class="btn btn-dark" href="/filter">Profanity Filter</a>
-                </li>
-                {% else %}
-                <li>
-
-
-                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right"
-                            title="Login to access this feature">
-                        Profanity Filter
-                    </button>
-                    <span class="badge badge-danger">Requires Login</span>
-
-                </li>
-
-
-                {% endif %}
-            </ul>
-        </div>
-    </div>
+    </a>
 </div>
 
 <!-- Icons Grid -->
@@ -247,8 +195,8 @@
                     <div class="features-icons-icon d-flex">
                         <i class="icon-layers m-auto text-primary"></i>
                     </div>
-                    <h3>10 Amazing Features </h3>
-                    <p class="lead mb-0">Featuring the 10 amazing multipurpose features.</p>
+                    <h3>17 Amazing Features </h3>
+                    <p class="lead mb-0">Featuring the 6 major and total 17 multipurpose features.</p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -274,7 +222,8 @@
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                 <h2>Fully Responsive Design</h2>
                 <p class="lead mb-0">Limfo works
-                    great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+                    great on any device, whether it's a phone, tablet, or desktop the page will behave
+                    responsively!</p>
             </div>
         </div>
         <div class="row no-gutters">
@@ -282,7 +231,9 @@
                  style="background-image: url({% static 'img/bg-showcase-2.jpg' %});"></div>
             <div class="col-lg-6 my-auto showcase-text">
                 <h2>Easy to Use</h2>
-                <p class="lead mb-0">Easy to Use and efficient features which will definitely make your life easier.</p>
+                <p class="lead mb-0">Easy to Use and efficient features which will definitely make your life
+                    easier.<br>
+                Do not forgot to explore all the amazing features! </p>
             </div>
         </div>
         <div class="row no-gutters">
@@ -290,9 +241,10 @@
                  style="background-image: url({% static 'img/rsz_final.jpg' %});"></div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                 <h2>You can be the next contributor!</h2>
-                <p class="lead mb-0">Yes! You can be the next contributor of limfo. This site is open-source and anyone
+                <p class="lead mb-0">Yes! You can be the next contributor of limfo. This site is open-source and
+                    anyone
                     can contribute for its betterment.</p><br>
-                <a href="disabled">Contribute Now!</a>
+                <a class="disabled">Contribute Now!</a>
             </div>
         </div>
     </div>

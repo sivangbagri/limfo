@@ -11,3 +11,10 @@ class Feedback(models.Model):
 
     def __str__(self):
         return 'Feedback from ' + str(self.name)
+
+
+class Scan(models.Model):
+    name = models.ImageField(upload_to='media/')
+    sno = models.AutoField(primary_key=True)
+    timeStamp = models.DateTimeField(auto_now_add=True, blank=True)
+

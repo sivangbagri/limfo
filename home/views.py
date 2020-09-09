@@ -228,7 +228,7 @@ m = f = c = 0
 
 def pdf_manipulate(request):
     from PyPDF2 import PdfFileMerger
-    text = merge = protect = False
+    txt = merge = protect = False
     global m
     global c
     global f
@@ -253,7 +253,7 @@ def pdf_manipulate(request):
             merger.close()
             return render(request, 'home/pdfs.html', {'m': m, 'merge': merge})
         if choice == 'convert':
-            text = True
+            txt = True
             c += 1
             import PyPDF2
             file = open(f'media/{uploaded_file_url[7:]}', 'rb')
@@ -264,7 +264,7 @@ def pdf_manipulate(request):
 
             with open(f'media/convertPDF{c}.txt', "a") as file2:
                 file2.writelines(text)
-            return render(request, 'home/pdfs.html', {'c': c, 'text': text})
+            return render(request, 'home/pdfs.html', {'c': c, 'text': txt})
         if choice == 'protect':
             password = request.POST.get('password')
             f += 1
@@ -288,12 +288,14 @@ def pdf_manipulate(request):
         return render(request, 'home/pdfs.html')
 
 
-g = 0
+g = e = d = 0
 
 
 def image_transform(request):
-    toPDF = enhance = False
+    toPDF = enhance = difference = False
     global g
+    global e
+    global d
     choice = request.POST.get('Radios')
     if request.method == 'POST' and request.FILES['img_file']:
         myfile = request.FILES['img_file']
@@ -310,16 +312,17 @@ def image_transform(request):
             im.save(f'media/gain{g}.pdf')
             return render(request, 'home/image.html', {'g': g, 'toPDF': toPDF})
         if choice == 'enh':
+            e += 1
             enhance = True
             from PIL import Image, ImageFilter
 
             im = Image.open(f'media/{uploaded_file_url[7:]}')
             from PIL import ImageEnhance
-
             enh = ImageEnhance.Contrast(im)
-            enh.enhance(1.8).show('30% more')
+            enhanced = enh.enhance(1.8)
+            enhanced.save(f'media/enhanced{e}.jpg')
             messages.success(request, 'Image enhanced.')
-            return render(request, 'home/image.html', {'g': g, 'enhance': enhance})
+            return render(request, 'home/image.html', {'enhance': enhance, 'e': e})
         if choice == 'diff' and request.FILES['img2']:
             myfile = request.FILES['img2']
             fs = FileSystemStorage()
@@ -332,13 +335,15 @@ def image_transform(request):
             try:
                 diff = ImageChops.difference(img1, img2)
                 if diff.getbbox():
-                    diff.show()
+                    difference = True
+                    d += 1
+                    diff.save(f'media/difference{d}.jpg')
                 else:
                     messages.error(request, 'No difference found.')
             except Exception:
                 messages.error(request, 'Images are not comparable.')
 
-            return render(request, 'home/image.html', )
+            return render(request, 'home/image.html', {'d': d, 'difference': difference})
     else:
         return render(request, 'home/image.html')
 

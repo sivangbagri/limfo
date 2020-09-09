@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block  title %} Limfo Image Transformation {% endblock %}
+{% block  title %} Limfo Image Transformer {% endblock %}
 {% block body %}
 
 <div class="container my-4">
@@ -42,6 +42,14 @@
     </form>
     {% if toPDF %}
     <a role="button" class="btn btn-outline-dark mx-3" href="/media/gain{{g}}.pdf" download="limfoPDF">Download PDF</a>
+    {% elif enhance %}
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/enhanced{{e}}.jpg" download="limfoImage">Download
+        Enhanced Image</a>
+    {% elif difference %}
+    <a role="button" class="btn btn-outline-dark mx-3" href="/media/difference{{d}}.jpg"
+       download="limfoImage">Download</a>
+
+
     {% endif %}
 </div>
 <center><a role="button" class="btn btn-dark my-5" href="/">Back to Home</a></center>
@@ -55,5 +63,9 @@
             var filename= $(this).val();
             $(this).next('.custom-file-label').html(filename);
             });
+
+
+
+
 </script>
 {% endblock %}

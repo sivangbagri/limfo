@@ -3,9 +3,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Feedback, Scan
+from django.core.mail import EmailMessage
 import requests
 import json
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
 
 
 # ----Core Features----
@@ -226,6 +228,7 @@ def text_transform(request):
 m = f = c = 0
 
 
+@login_required(login_url='/#sign')
 def pdf_manipulate(request):
     from PyPDF2 import PdfFileMerger
     txt = merge = protect = False
@@ -369,6 +372,12 @@ def scan(request):
     return render(request, 'home/scan.html')
 
 
+# def send_mail(request):
+#     msg = EmailMessage('Request Callback', 'Thanks for using limfo', to=['sivangbagri@gmail.com'])
+#     msg.send()
+#     return redirect('home')
+
+
 # -----Website mex features----
 def handleSignup(request):
     if request.method == 'POST':
@@ -392,14 +401,20 @@ def handleSignup(request):
             return redirect('home')
 
         # create user
-        try:
-            myuser = User.objects.create_user(username, email, pass1)
-            myuser_first_name = fname
-            mysuer_last_name = lname
-            myuser.save()
-            messages.success(request, "limfo Account created successfully.")
-        except Exception as e:
-            messages.error(request, "Username already exist. Try again with a unique one.")
+
+        myuser = User.objects.create_user(username, email, pass1)
+        myuser_first_name = fname
+        mysuer_last_name = lname
+        myuser.save()
+        msg = EmailMessage('Thanks for using limfo',
+                           f'Thanks {fname} for joining limfo.\nHope you find it useful, If yes, then do not forgot '
+                           'to '
+                           f'drop us a feedback at limfo.pythonanywhere.com/feedback. :) ',
+                           to=[email])
+        msg.send()
+        messages.success(request, "limfo Account created successfully.")
+
+        # messages.error(request, "Username already exist. Try again with a unique one.")
 
         return redirect('home')
     else:
